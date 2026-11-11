@@ -23,8 +23,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
     // Laravel Log Viewer (khusus admin)
-    Route::get('/logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])
-        ->name('logs');
+    Route::get('/logs', [
+        \Rap2hpoutre\LaravelLogViewer\LogViewerController::class,
+        'index'
+    ])->name('logs');
 
     Route::resource('mapel', Admin\MapelController::class)
         ->parameters(['mapel' => 'mapel'])
